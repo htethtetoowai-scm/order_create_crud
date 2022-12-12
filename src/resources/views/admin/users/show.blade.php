@@ -17,9 +17,9 @@
 <div class="card">
   <div class="card-body">
     <div class="form-group row">
-      <label for="name" class="col-md-2 col-form-label">{{ __('Name') }}</label>
+      <label for="username" class="col-md-2 col-form-label">{{ __('UserName') }}</label>
       <div class="col-md-10">
-        <input type="text" class="form-control" name="name" value="{{$user->name}}" readonly>
+        <input type="text" class="form-control" name="name" value="{{$user->username}}" readonly>
       </div>
     </div>
     <div class="form-group row">

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Admin;
+namespace App\Services\API;
 
 use App\Contracts\Dao\API\OrderDaoInterface;
 use App\Contracts\Services\API\OrderServiceInterface;

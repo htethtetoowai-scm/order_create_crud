@@ -23,7 +23,7 @@
       <thead>
         <tr>
           <th>Id</th>
-          <th>Name</th>
+          <th>UserName</th>
           <th>Email</th>
           <th>Phone Number</th>
           <th>Address</th>
@@ -36,7 +36,7 @@
         @foreach ($users as $user)
           <tr>
             <th scope="row">{{$user->id}}</th>
-            <td><a href="{{route('users.show', [$user->id])}}">{{$user->name}}</a></td>
+            <td><a href="{{route('users.show', [$user->id])}}">{{$user->username}}</a></td>
             <td>{{$user->email}}</td>
             <td>{{$user->phone}}</td>
             <td>{{$user->address}}</td>

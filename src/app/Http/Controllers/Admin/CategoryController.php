@@ -60,7 +60,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = $this->categoryService->createCategory($id);
+        $category = $this->categoryService->findCategoryById($id);
         return view('admin.categories.show', compact('category'));
     }
 

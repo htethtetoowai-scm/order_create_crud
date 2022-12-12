@@ -38,8 +38,8 @@
               <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="form-group">
-                  <input type="name" class="form-control @error('name') is-invalid @enderror" placeholder="UserName" name="name" value="{{ old('name') }}" autofocus>
-                  @error('name')
+                  <input type="username" class="form-control @error('username') is-invalid @enderror" placeholder="UserName" name="username" value="{{ old('username') }}" autofocus>
+                  @error('username')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                     </span>

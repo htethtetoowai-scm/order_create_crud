@@ -32,6 +32,8 @@ class StoreUserRequest extends FormRequest
             'role' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|max:20|confirmed',
+            'phone' => 'required',
+            'address' => 'required',
         ];
     }
 
@@ -50,7 +52,9 @@ class StoreUserRequest extends FormRequest
             'email.email' => 'Please use correct email',
             'email.unique' => 'Email is already used',
             'password.required' => 'Password is required',
-            'password.confirmed' => 'Please enter the same password'
+            'password.confirmed' => 'Please enter the same password',
+            'phone.required' => 'Phone is required',
+            'address.required' => 'Address is required',
         ];
     }
 }

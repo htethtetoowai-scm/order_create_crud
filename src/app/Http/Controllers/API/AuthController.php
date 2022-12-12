@@ -20,16 +20,18 @@ class AuthController extends BaseController
     public function register(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:users,name',
+            'username' => 'required|unique:users,username',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|max:20',
+            'phone' => 'required',
+            'address' => 'required',
         ]);
         try {
             User::create([
-                'name' => $request->input('name'),
+                'username' => $request->input('username'),
                 'role_id' => config('constant.ADMIN_ROLE_ID'),
                 'email' => $request->input('email'),
-                'password' => Hash::make($request->input('name')),
+                'password' => Hash::make($request->input('password')),
                 'phone' => $request->input('phone'),
                 'address' => $request->input('address'),
                 'status' => config('constant.USER_DEFAULT_STATUS'),
@@ -48,16 +50,16 @@ class AuthController extends BaseController
     public function login(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'max:100'],
+            'username' => ['required', 'max:100'],
             'password' => ['required', 'max:20'],
         ]);
         $user = User::where([
-            'name' => $request['name'],
+            'username' => $request['username'],
         ])->first();
         if ($user && Hash::check($request['password'], $user->password)) {
             Auth::guard('api')->setUser($user);
             $success['token'] =  $user->createToken('MyApp')->accessToken;
-            $success['name'] =  $user->name;
+            $success['username'] =  $user->username;
             return $this->sendResponse($success, 'User login successfully.');
         } else {
             return $this->sendError('Unauthorised.', ['error' => 'Unauthorised'], JsonResponse::HTTP_UNAUTHORIZED);

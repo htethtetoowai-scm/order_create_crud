@@ -21,10 +21,10 @@
       @method('PATCH')
       <input type="hidden" name="id" value="{{$user->id}}">
       <div class="form-group row">
-        <label for="name" class="col-md-2 col-form-label">{{ __('Name') }}</label>
+        <label for="username" class="col-md-2 col-form-label">{{ __('UserName') }}</label>
         <div class="col-md-10">
-          <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$user->name}}">
-          @error('name')
+          <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{$user->username}}">
+          @error('username')
           <span class="text-danger">{{ $message }}</span>
           @enderror
         </div>

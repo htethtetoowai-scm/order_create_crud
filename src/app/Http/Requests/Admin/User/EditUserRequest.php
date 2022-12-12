@@ -26,6 +26,8 @@ class EditUserRequest extends FormRequest
         return [
             'username' => 'required|unique:users,username,' . $this->id,
             'email' => 'required|unique:users,email,' . $this->id,
+            'phone' => 'required',
+            'address' => 'required',
         ];
     }
 
@@ -41,6 +43,8 @@ class EditUserRequest extends FormRequest
             'username.unique' => 'User name is already used',
             'email.required' => 'Email is required',
             'email.unique' => 'Email is already used',
+            'phone.required' => 'Phone is required',
+            'address.required' => 'Address is required',
         ];
     }
 }

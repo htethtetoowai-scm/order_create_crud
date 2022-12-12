@@ -25,7 +25,7 @@
     <div class="form-group row">
       <label for="category" class="col-md-2 col-form-label">{{ __('Category') }}</label>
       <div class="col-md-10">
-        <input type="text" class="form-control" name="category" value="{{$subCategory->category->name}}" readonly>
+        <input type="text" class="form-control" name="category" value="{{$subCategory->category->title}}" readonly>
       </div>
     </div>
     <div class="form-group row">

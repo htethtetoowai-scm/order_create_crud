@@ -19,6 +19,7 @@
     <form method="POST" action="{{ route('subCategories.update', [$subCategory->id]) }}" autocomplete="off" enctype="multipart/form-data">
       @csrf
       @method('PATCH')
+      <input type="hidden" name="id" value="{{$subCategory->id}}">
       <div class="form-group row">
         <label for="title" class="col-md-2 col-form-label">{{ __('Title') }}</label>
         <div class="col-md-10">

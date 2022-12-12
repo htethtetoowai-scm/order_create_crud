@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
-use App\Contracts\Services\API\orderServiceInterface;
+use App\Contracts\Services\API\OrderServiceInterface;
 use App\Http\Controllers\API\BaseController as BaseController;
 
 class OrderController extends BaseController
@@ -24,6 +24,11 @@ class OrderController extends BaseController
      */
     public function saveOrder(Request $request)
     {
+        $request->validate([
+            'items' => 'required',
+            'items.*.item_id' => 'required',
+            'items.*.quantity' => 'required',
+        ]);
         $this->orderService->saveOrder($request);
         return $this->sendResponse(null, 'Order create successfully.');
     }

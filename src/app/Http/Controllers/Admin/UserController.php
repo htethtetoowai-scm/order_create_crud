@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\User\StoreUserRequest;
 use App\Http\Requests\Admin\User\EditUserRequest;
 use App\Contracts\Services\Admin\UserServiceInterface;
-use App\Contracts\Services\Admin\roleServiceInterface;
+use App\Contracts\Services\Admin\RoleServiceInterface;
 
 class UserController extends Controller
 {

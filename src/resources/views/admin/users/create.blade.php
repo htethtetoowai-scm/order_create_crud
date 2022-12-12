@@ -19,10 +19,10 @@
     <form method="POST" action="{{ route('users.store') }}" autocomplete="off">
       @csrf
       <div class="form-group row">
-        <label for="name" class="col-md-2 col-form-label">{{ __('Name') }}</label>
+        <label for="username" class="col-md-2 col-form-label">{{ __('UserName') }}</label>
         <div class="col-md-10">
-          <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{old('name')}}">
-          @error('name')
+          <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{old('username')}}">
+          @error('username')
             <span class="text-danger">{{ $message }}</span>
           @enderror
         </div>

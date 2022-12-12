@@ -28,10 +28,10 @@ class UserDao implements UserDaoInterface
     public function createUser($request)
     {
         User::create([
-            'name' => $request->input('name'),
+            'username' => $request->input('username'),
             'role_id' => $request->input('role'),
             'email' => $request->input('email'),
-            'password' => Hash::make($request->input('name')),
+            'password' => Hash::make($request->input('password')),
             'phone' => $request->input('phone'),
             'address' => $request->input('address'),
             'status' => 1,
@@ -57,7 +57,7 @@ class UserDao implements UserDaoInterface
     public function updateUser($request, $id)
     {
         $user = User::findOrFail($id);
-        $user->name = $request->input('name');
+        $user->username = $request->input('username');
         $user->role_id = $request->input('role');
         $user->email = $request->input('email');
         $user->phone = $request->input('phone');

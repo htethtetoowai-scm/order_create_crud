@@ -23,12 +23,12 @@ class AuthController extends Controller
 
         if ($request->isMethod('POST')) {
             $request->validate([
-                'name' => ['required', 'max:100'],
+                'username' => ['required', 'max:100'],
                 'password' => ['required', 'max:20'],
             ]);
             $user = User::where([
                 'role_id' => config('constant.ADMIN_ROLE_ID'),
-                'name' => $request['name'],
+                'username' => $request['username'],
             ])->first();
             if ($user && Hash::check($request['password'], $user->password)) {
                 Session::regenerate();
