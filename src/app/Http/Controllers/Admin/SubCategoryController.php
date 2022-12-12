@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\SubCategory\StoreSubCategoryRequest;
 use App\Http\Requests\Admin\SubCategory\EditSubCategoryRequest;
 use App\Contracts\Services\Admin\SubCategoryServiceInterface;
 use Illuminate\Http\Request;
+use App\Models\SubCategory;
 
 
 class SubCategoryController extends Controller
@@ -105,5 +106,17 @@ class SubCategoryController extends Controller
         $subCategory =  $this->subCategoryService->deleteSubCategory($id);
         return redirect()->route('subCategories.index')
             ->with('success', 'Category deleted successfully.');
+    }
+
+
+    /**
+     * Get subcategories with ajax.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getSubCategories()
+    {
+        $subCategories = SubCategory::all();
+        return response()->json(['data' => $subCategories]);
     }
 }

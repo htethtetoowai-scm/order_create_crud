@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\AuthController;
 |
 */
 
+Route::redirect('/', 'admin/dashboard');
 Route::match(['GET', 'POST'], 'login', [AuthController::class, 'login'])->name('login')->middleware('guest:web');
 Route::prefix('admin')->middleware('auth:web')->group(function() {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
@@ -27,6 +28,7 @@ Route::prefix('admin')->middleware('auth:web')->group(function() {
     Route::resource('roles', RoleController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('subCategories', SubCategoryController::class);
+    Route::get('/subCategoryData', [SubCategoryController::class, 'getSubCategories']);
     Route::resource('items', ItemController::class);
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });

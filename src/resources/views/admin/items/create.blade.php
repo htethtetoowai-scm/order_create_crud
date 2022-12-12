@@ -44,7 +44,8 @@
             <div class="form-group row">
                 <label for="category" class="col-md-2 col-form-label">{{ __('Choose Category') }}</label>
                 <div class="col-md-10">
-                    <select class="form-control" name="category" value="{{ old('category') }}">
+                    <select class="form-control" name="category" value="{{ old('category') }}" id="category">
+                        <option value="">Select Category</option>
                         @foreach ($categories as $category)
                             <option value="{{$category->id}}">{{$category->title}}</option>
                         @endforeach
@@ -57,10 +58,8 @@
             <div class="form-group row">
                 <label for="subCategory" class="col-md-2 col-form-label">{{ __('Choose SubCategory') }}</label>
                 <div class="col-md-10">
-                    <select class="form-control" name="subCategory" value="{{ old('subCategory') }}">
-                        @foreach ($subCategories as $subCategory)
-                            <option value="{{$subCategory->id}}">{{$subCategory->title}}</option>
-                        @endforeach
+                    <select class="form-control" name="subCategory" id="subCategory">
+                        <option value="">Select SubCategory (Optional)</option>
                     </select>
                     @error('subCategory')
                         <span class="text-danger">{{ $message }}</span>
@@ -110,24 +109,5 @@
 @endsection
 
 @section('script')
-<script>
-    $(function() {
-        // Multiple images preview with JavaScript
-        var previewImages = function(input, imgPreviewPlaceholder) {
-            if (input.files) {
-                var filesAmount = input.files.length;
-                for (i = 0; i < filesAmount; i++) {
-                    var reader = new FileReader();
-                    reader.onload = function(event) {
-                        $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
-                    }
-                    reader.readAsDataURL(input.files[i]);
-                }
-            }
-        };
-        $('#image').on('change', function() {
-            previewImages(this, 'div#images-preview-div');
-        });
-    });
-</script>
+<script src="{{ asset('js/sub-categories/create.js') }}"></script>
 @endsection
