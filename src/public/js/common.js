@@ -14,6 +14,7 @@ $(function () {
   };
   $('#image').on('change', function () {
     previewImages(this, 'div#images-preview-div');
+    $('.show-images').hide();
   });
 });
 $(document).ready(function () {

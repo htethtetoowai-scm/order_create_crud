@@ -2,16 +2,6 @@
 
 @section('title', 'Item Edit')
 
-@section('css')
-<style>
-  #images-preview-div img {
-    padding: 10px;
-    max-width: 150px;
-    max-height: 150px;
-  }
-</style>
-@endsection
-
 @section('content')
 
 <div class="app-page-title">
