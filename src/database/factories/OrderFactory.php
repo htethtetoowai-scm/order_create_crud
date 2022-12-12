@@ -17,7 +17,7 @@ class OrderFactory extends Factory
      */
     public function definition()
     {
-        return [            
+        return [
             'user_id' => User::all()->random()->id,
             'delivery_email' => $this->faker->safeEmail(),
             'delivery_phone' => $this->faker->phoneNumber(),

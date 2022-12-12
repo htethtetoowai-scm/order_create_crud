@@ -4,7 +4,6 @@ namespace App\Dao\Admin;
 
 use App\Contracts\Dao\Admin\SubCategoryDaoInterface;
 use App\Models\SubCategory;
-use Illuminate\Support\Facades\Hash;
 
 /**
  * Data Access Object for SubCategory
@@ -44,7 +43,6 @@ class SubCategoryDao implements SubCategoryDaoInterface
      * To update subCategory data
      * @param  Illuminate\Http\Request  $request
      * @param int $id
-     * @return array $dashboardData
      */
     public function updateSubCategory($request, $id)
     {
@@ -64,5 +62,4 @@ class SubCategoryDao implements SubCategoryDaoInterface
         $subCategory = SubCategory::findOrFail($id);
         $subCategory->delete();
     }
-
 }

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Role;
 use App\Http\Requests\Admin\User\StoreUserRequest;
 use App\Http\Requests\Admin\User\EditUserRequest;
 use App\Contracts\Services\Admin\UserServiceInterface;
+use App\Contracts\Services\Admin\roleServiceInterface;
 
 class UserController extends Controller
 {
@@ -14,9 +14,13 @@ class UserController extends Controller
      * Item Interface
      */
     private $userService;
-    public function __construct(UserServiceInterface $userServiceInterface)
-    {
+    private $roleService;
+    public function __construct(
+        UserServiceInterface $userServiceInterface,
+        RoleServiceInterface $roleServiceInterface
+    ) {
         $this->userService = $userServiceInterface;
+        $this->roleService = $roleServiceInterface;
     }
     /**
      * Display a listing of the users.
@@ -36,7 +40,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::all();
+        $roles = $this->roleService->getAllRole();
         return view('admin.users.create', compact('roles'));
     }
 
@@ -73,7 +77,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $roles = Role::all();
+        $roles = $this->roleService->getAllRole();
         $user = $this->userService->findUserById($id);
         return view('admin.users.edit', compact('user', 'roles'));
     }

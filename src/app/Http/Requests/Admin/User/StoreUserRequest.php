@@ -28,14 +28,14 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:users,name',
+            'username' => 'required|unique:users,username',
             'role' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|max:20|confirmed',
         ];
     }
 
-        /**
+    /**
      * Get the error messages for the defined validation rules.
      *
      * @return array
@@ -43,7 +43,8 @@ class StoreUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'User name is required',
+            'username.required' => 'User name is required',
+            'username.unique' => 'User name is already used',
             'role.required' => 'User role is required',
             'email.required' => 'User email is required',
             'email.email' => 'Please use correct email',

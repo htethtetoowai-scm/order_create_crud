@@ -3,24 +3,29 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Item;
 use App\Http\Requests\Admin\Item\EditItemRequest;
 use App\Http\Requests\Admin\Item\StoreItemRequest;
-use App\Models\SubCategory;
-use Illuminate\Support\Facades\Storage;
 use App\Contracts\Services\Admin\ItemServiceInterface;
+use App\Contracts\Services\Admin\CategoryServiceInterface;
+use App\Contracts\Services\Admin\SubCategoryServiceInterface;
 
 class ItemController extends Controller
 {
 
     /**
-     * Item Interface
+     * Item Service Interface
      */
     private $itemService;
-    public function __construct(ItemServiceInterface $itemServiceInterface)
-    {
+    private $categoryService;
+    private $subCategoryService;
+    public function __construct(
+        ItemServiceInterface $itemServiceInterface,
+        CategoryServiceInterface $categoryServiceInterface,
+        SubCategoryServiceInterface $subCategoryServiceInterface
+    ) {
         $this->itemService = $itemServiceInterface;
+        $this->categoryService = $categoryServiceInterface;
+        $this->subCategoryService = $subCategoryServiceInterface;
     }
 
     /**
@@ -41,8 +46,8 @@ class ItemController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        $subCategories = SubCategory::all();
+        $categories = $this->categoryService->getAllCategory();
+        $subCategories = $this->subCategoryService->getAllSubCategory();
         return view('admin.items.create', compact('categories', 'subCategories'));
     }
 
@@ -54,23 +59,8 @@ class ItemController extends Controller
      */
     public function store(StoreItemRequest $request)
     {
-        $filePath = null;
         $itemId = $this->itemService->createItem($request);
-        if ($request->file('image')) {
-            $file = $request->file('image');
-            $folderPath = 'items';
-            // Check if file is not null
-            if ($file) {
-                // get file name
-                $file_extension = $file->getClientOriginalExtension();
-                $file_name = $itemId . '.' . $file_extension;
-
-                // save the file
-                $filePath = Storage::disk('public')->putFileAs($folderPath, $file, $file_name);
-            }
-            $this->itemService->updateItemImage($filePath, $itemId);
-        }
-
+        $this->itemService->saveImageFile($request->file('image'), $itemId);
         return redirect()->route('items.index')
             ->with('success', 'Item created successfully.');
     }
@@ -96,8 +86,8 @@ class ItemController extends Controller
     public function edit($id)
     {
         $item = $this->itemService->findItemById($id);
-        $categories = Category::all();
-        $subCategories = SubCategory::all();
+        $categories = $this->categoryService->getAllCategory();
+        $subCategories = $this->subCategoryService->getAllSubCategory();
         return view('admin.items.edit', compact('item', 'categories', 'subCategories'));
     }
 
@@ -111,20 +101,7 @@ class ItemController extends Controller
     public function update(EditItemRequest $request, $id)
     {
         $this->itemService->updateItem($request, $id);
-        if ($request->file('image')) {
-            $file = $request->file('image');
-            $folderPath = 'items/';
-            // Check if file is not null
-            if ($file) {
-                // get file name
-                $file_extension = $file->getClientOriginalExtension();
-                $file_name = $id . '.' . $file_extension;
-
-                // save the file
-                $filePath = Storage::disk('public')->putFileAs($folderPath, $file, $file_name);
-            }
-            $this->itemService->updateItemImage($filePath, $id);
-        }
+        $this->itemService->saveImageFile($request->file('image'), $id);
         return redirect()->route('items.index')
             ->with('success', 'Item edited successfully.');
     }

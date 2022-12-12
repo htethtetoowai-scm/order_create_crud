@@ -15,7 +15,7 @@ class SubCategory extends Model
     ];
 
     /**
-     * Get the order associated with the user.
+     * Get the items associated with the subCategory.
      */
     public function items()
     {
@@ -23,7 +23,7 @@ class SubCategory extends Model
     }
 
     /**
-     * Get the rold that owns the user.
+     * Get the category that owns the subCategory.
      */
     public function category()
     {
@@ -31,13 +31,14 @@ class SubCategory extends Model
     }
 
     /**  
-    *Ondelete cascade for user
-    */
-    public static function boot() {
+     * Ondelete cascade for subCategory
+     */
+    public static function boot()
+    {
         parent::boot();
 
-        static::deleting(function($subCategory) {
-            foreach($subCategory->items as $item) {
+        static::deleting(function ($subCategory) {
+            foreach ($subCategory->items as $item) {
                 $item->delete();
             }
         });

@@ -59,7 +59,6 @@ class CategoryService implements CategoryServiceInterface
      * To update category data
      * @param  Illuminate\Http\Request  $request
      * @param int $id
-     * @return array $dashboardData
      */
     public function updateCategory($request, $id)
     {
@@ -74,5 +73,4 @@ class CategoryService implements CategoryServiceInterface
     {
         $this->categoryDao->deleteCategory($id);
     }
-
 }

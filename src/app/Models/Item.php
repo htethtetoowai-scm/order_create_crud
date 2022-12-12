@@ -19,7 +19,7 @@ class Item extends Model
     ];
 
     /**
-     * Get the order associated with the user.
+     * Get the orderItems associated with the item.
      */
     public function orderItems()
     {
@@ -27,7 +27,7 @@ class Item extends Model
     }
 
     /**
-     * Get the rold that owns the user.
+     * Get the category that owns the item.
      */
     public function category()
     {
@@ -35,7 +35,7 @@ class Item extends Model
     }
 
     /**
-     * Get the rold that owns the user.
+     * Get the subCategory that owns the item.
      */
     public function subCategory()
     {
@@ -43,30 +43,29 @@ class Item extends Model
     }
 
     /**
-     * Get the user's first name.
+     * Get the item's image.
      *
-     * @param  string  $value
      * @return string
      */
-    public function getImageStringAttribute($value)
+    public function getImageStringAttribute()
     {
         if (!Storage::disk('public')->exists($this->image_path)) {
             return $this->image_path;
         }
-        return base64_encode(file_get_contents(storage_path('app/public/'.$this->image_path)));
+        return base64_encode(file_get_contents(storage_path('app/public/' . $this->image_path)));
     }
 
     /**  
-    *Ondelete cascade for user
-    */
-    public static function boot() {
+     * Ondelete cascade for item
+     */
+    public static function boot()
+    {
         parent::boot();
 
-        static::deleting(function($item) {
-            foreach($item->orderItems as $orderItem) {
+        static::deleting(function ($item) {
+            foreach ($item->orderItems as $orderItem) {
                 $orderItem->delete();
             }
         });
     }
-
 }

@@ -43,7 +43,7 @@ interface UserServiceInterface
     /**
      * To get user data with Role
      * @param int $id
-     * @return object material
+     * @return object user
      */
     public function getUserWithRole($id);
 }

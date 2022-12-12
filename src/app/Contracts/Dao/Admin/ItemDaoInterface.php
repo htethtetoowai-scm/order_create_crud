@@ -32,7 +32,6 @@ interface ItemDaoInterface
      * To update item data
      * @param  Illuminate\Http\Request  $request
      * @param int $id
-     * @return array $dashboardData
      */
     public function updateItem($request, $id);
 
@@ -47,5 +46,4 @@ interface ItemDaoInterface
      * @param int $id
      */
     public function deleteItem($id);
-
 }

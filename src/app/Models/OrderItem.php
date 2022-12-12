@@ -20,15 +20,15 @@ class OrderItem extends Model
     ];
 
     /**
-     * Get the rold that owns the user.
+     * Get the orders that owns the orderItem.
      */
     public function order()
     {
         return $this->belongsTo(Order::class);
     }
-        
+
     /**
-     * Get the rold that owns the user.
+     * Get the items that owns the orderItem.
      */
     public function item()
     {

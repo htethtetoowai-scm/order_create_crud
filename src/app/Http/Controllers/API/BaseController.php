@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 
 
 use App\Http\Controllers\Controller as Controller;
-
+use Illuminate\Http\JsonResponse;
 
 class BaseController extends Controller
 {
@@ -16,14 +16,13 @@ class BaseController extends Controller
      */
     public function sendResponse($result, $message)
     {
-    	$response = [
+        $response = [
             'success' => true,
             'data'    => $result,
             'message' => $message,
         ];
 
-
-        return response()->json($response, 200);
+        return response()->json($response, JsonResponse::HTTP_OK);
     }
 
 
@@ -32,13 +31,13 @@ class BaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function sendError($error, $errorMessages = [], $code = 404)
+    public function sendError($error, $errorMessages = [], $code = JsonResponse::HTTP_NOT_FOUND)
     {
-    	$response = [
+        $response = [
             'success' => false,
             'message' => $error,
         ];
-        if(!empty($errorMessages)){
+        if (!empty($errorMessages)) {
             $response['data'] = $errorMessages;
         }
         return response()->json($response, $code);

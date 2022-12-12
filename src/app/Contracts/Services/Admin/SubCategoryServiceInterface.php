@@ -30,7 +30,6 @@ interface SubCategoryServiceInterface
      * To update subCategory data
      * @param  Illuminate\Http\Request  $request
      * @param int $id
-     * @return array $dashboardData
      */
     public function updateSubCategory($request, $id);
 
@@ -39,5 +38,4 @@ interface SubCategoryServiceInterface
      * @param int $id
      */
     public function deleteSubCategory($id);
-
 }

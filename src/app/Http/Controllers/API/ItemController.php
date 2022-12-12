@@ -5,11 +5,19 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ItemResource;
 use App\Models\Item;
-use App\Models\OrderItem;
-use Illuminate\Http\Request;
+use App\Contracts\Services\Admin\ItemServiceInterface;
 
 class ItemController extends Controller
 {
+    /**
+     * Item Service Interface
+     */
+    private $itemService;
+    public function __construct(ItemServiceInterface $itemServiceInterface)
+    {
+        $this->itemService = $itemServiceInterface;
+    }
+
     /**
      * Display a listing of the items.
      *
@@ -17,19 +25,18 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::all();
+        $items = $this->itemService->getAllItem();
         return ItemResource::collection($items);
     }
 
     /**
-     * Display a listing of the items.
-     *
+     * Display detail of specified item.
+     * @param int $i
      * @return \Illuminate\Http\Response
      */
     public function detail($id)
     {
-        $item = Item::findOrFail($id);
+        $item = $this->itemService->findItemById($id);
         return new ItemResource($item);
     }
-
 }

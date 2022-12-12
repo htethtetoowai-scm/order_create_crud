@@ -18,8 +18,8 @@ class Category extends Model
         'description',
     ];
 
-     /**
-     * Get the product associated with the category.
+    /**
+     * Get the items associated with the category.
      */
     public function items()
     {
@@ -27,7 +27,7 @@ class Category extends Model
     }
 
     /**
-     * Get the order associated with the user.
+     * Get the subCategories associated with the category.
      */
     public function subCategories()
     {
@@ -35,16 +35,17 @@ class Category extends Model
     }
 
     /**  
-    *Ondelete cascade for user
-    */
-    public static function boot() {
+     * Ondelete cascade for category
+     */
+    public static function boot()
+    {
         parent::boot();
 
-        static::deleting(function($category) {
-            foreach($category->subCategories as $subCategory) {
+        static::deleting(function ($category) {
+            foreach ($category->subCategories as $subCategory) {
                 $subCategory->delete();
             }
-            foreach($category->items as $item) {
+            foreach ($category->items as $item) {
                 $item->delete();
             }
         });

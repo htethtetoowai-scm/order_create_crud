@@ -4,7 +4,6 @@ namespace App\Dao\Admin;
 
 use App\Contracts\Dao\Admin\RoleDaoInterface;
 use App\Models\Role;
-use Illuminate\Support\Facades\Hash;
 
 /**
  * Data Access Object for Role
@@ -44,7 +43,6 @@ class RoleDao implements RoleDaoInterface
      * To update role data
      * @param  Illuminate\Http\Request  $request
      * @param int $id
-     * @return array $dashboardData
      */
     public function updateRole($request, $id)
     {
@@ -63,5 +61,4 @@ class RoleDao implements RoleDaoInterface
         $role = Role::findOrFail($id);
         $role->delete();
     }
-
 }

@@ -32,7 +32,6 @@ interface SubCategoryDaoInterface
      * To update subCategory data
      * @param  Illuminate\Http\Request  $request
      * @param int $id
-     * @return array $dashboardData
      */
     public function updateSubCategory($request, $id);
 
@@ -41,5 +40,4 @@ interface SubCategoryDaoInterface
      * @param int $id
      */
     public function deleteSubCategory($id);
-
 }

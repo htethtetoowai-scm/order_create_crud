@@ -59,7 +59,6 @@ class SubCategoryService implements SubCategoryServiceInterface
      * To update subCategory data
      * @param  Illuminate\Http\Request  $request
      * @param int $id
-     * @return array $dashboardData
      */
     public function updateSubCategory($request, $id)
     {
@@ -74,5 +73,4 @@ class SubCategoryService implements SubCategoryServiceInterface
     {
         $this->subCategoryDao->deleteSubCategory($id);
     }
-
 }

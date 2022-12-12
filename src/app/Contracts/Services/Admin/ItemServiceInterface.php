@@ -40,6 +40,12 @@ interface ItemServiceInterface
     public function updateItemImage($filePath, $id);
 
     /**
+     * To save image into local path
+     * @param Illuminate\Http\Request  $request
+     */
+    public function saveImageFile($image, $itemId);
+
+    /**
      * To delete item data
      * @param int $id
      */

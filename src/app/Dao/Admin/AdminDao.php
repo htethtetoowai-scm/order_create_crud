@@ -17,7 +17,7 @@ class AdminDao implements AdminDaoInterface
     /**
      * To get admin data
      *
-     * @return object material
+     * @return array $dashboardData
      */
     public function getAdminDataTotalCount()
     {

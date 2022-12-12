@@ -25,11 +25,12 @@ class StoreItemRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
-            'price'=>['required',
+            'name' => 'required',
+            'price' => [
+                'required',
                 function ($attribute, $value, $fail) {
                     if ($value < 100) {
-                        $fail ('The '.$attribute.' should be at least 100 mmk');
+                        $fail('The ' . $attribute . ' should be at least 100 mmk');
                     }
                 },
             ],
@@ -38,7 +39,7 @@ class StoreItemRequest extends FormRequest
         ];
     }
 
-        /**
+    /**
      * Get the error messages for the defined validation rules.
      *
      * @return array
@@ -46,9 +47,9 @@ class StoreItemRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Product name is required',
+            'name.required' => 'Item name is required',
             'price.required' => 'Please describe your selling price',
-            'image.required' => 'Please upload your product photo',
+            'image.required' => 'Please upload your item photo',
         ];
     }
 }

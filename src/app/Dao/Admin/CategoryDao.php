@@ -44,7 +44,6 @@ class CategoryDao implements CategoryDaoInterface
      * To update category data
      * @param  Illuminate\Http\Request  $request
      * @param int $id
-     * @return array $dashboardData
      */
     public function updateCategory($request, $id)
     {
@@ -64,5 +63,4 @@ class CategoryDao implements CategoryDaoInterface
         $category = Category::findOrFail($id);
         $category->delete();
     }
-
 }

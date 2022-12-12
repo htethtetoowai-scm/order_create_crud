@@ -8,7 +8,7 @@ use App\Contracts\Services\Admin\AdminServiceInterface;
 class AdminController extends Controller
 {
     /**
-     * Item Interface
+     * Item Service Interface
      */
     private $adminService;
     public function __construct(AdminServiceInterface $adminServiceInterface) {

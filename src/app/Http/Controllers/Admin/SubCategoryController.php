@@ -7,8 +7,7 @@ use App\Models\Category;
 use App\Http\Requests\Admin\SubCategory\StoreSubCategoryRequest;
 use App\Http\Requests\Admin\SubCategory\EditSubCategoryRequest;
 use App\Contracts\Services\Admin\SubCategoryServiceInterface;
-use Illuminate\Http\Request;
-use App\Models\SubCategory;
+use App\Contracts\Services\Admin\CategoryServiceInterface;
 
 
 class SubCategoryController extends Controller
@@ -17,9 +16,13 @@ class SubCategoryController extends Controller
      * SubCategory Interface
      */
     private $subCategoryService;
-    public function __construct(SubCategoryServiceInterface $subCategoryServiceInterface)
-    {
+    private $categoryService;
+    public function __construct(
+        SubCategoryServiceInterface $subCategoryServiceInterface,
+        CategoryServiceInterface $categoryServiceInterface
+    ) {
         $this->subCategoryService = $subCategoryServiceInterface;
+        $this->categoryService = $categoryServiceInterface;
     }
     /**
      * Display a listing of the subCategories.
@@ -39,7 +42,7 @@ class SubCategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = $this->categoryService->getAllCategory();;
         return view('admin.sub-categories.create', compact('categories'));
     }
 
@@ -77,7 +80,7 @@ class SubCategoryController extends Controller
     public function edit($id)
     {
         $subCategory =  $this->subCategoryService->findSubCategoryById($id);
-        $categories = Category::all();
+        $categories = $this->categoryService->getAllCategory();;
         return view('admin.sub-categories.edit', compact('subCategory', 'categories'));
     }
 
@@ -116,7 +119,7 @@ class SubCategoryController extends Controller
      */
     public function getSubCategories()
     {
-        $subCategories = SubCategory::all();
+        $subCategories = $this->subCategoryService->getAllSubCategory();
         return response()->json(['data' => $subCategories]);
     }
 }

@@ -30,7 +30,6 @@ interface RoleServiceInterface
      * To update role data
      * @param  Illuminate\Http\Request  $request
      * @param int $id
-     * @return array $dashboardData
      */
     public function updateRole($request, $id);
 
@@ -39,5 +38,4 @@ interface RoleServiceInterface
      * @param int $id
      */
     public function deleteRole($id);
-
 }

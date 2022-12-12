@@ -22,11 +22,10 @@ class Order extends Model
     ];
 
     /**
-     * Get the order associated with the user.
+     * Get the orderItems associated with the order.
      */
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
     }
-
 }

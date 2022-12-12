@@ -27,7 +27,7 @@ class AuthController extends Controller
                 'password' => ['required', 'max:20'],
             ]);
             $user = User::where([
-                'role_id' => 1,
+                'role_id' => config('constant.ADMIN_ROLE_ID'),
                 'name' => $request['name'],
             ])->first();
             if ($user && Hash::check($request['password'], $user->password)) {

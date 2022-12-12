@@ -18,10 +18,11 @@ use App\Http\Controllers\API\SubCategoryController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
 
-Route::middleware('auth:api')->group(function() {
+Route::middleware('auth:api')->group(function () {
     Route::get('logout', [AuthController::class, 'logout']);
     Route::post('saveOrder', [OrderController::class, 'saveOrder']);
     Route::get('items', [ItemController::class, 'index']);

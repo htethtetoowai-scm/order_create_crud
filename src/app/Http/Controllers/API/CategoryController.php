@@ -4,20 +4,17 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryResource;
-use App\Models\Category;
-use Illuminate\Http\Request;
+use App\Contracts\Services\Admin\CategoryServiceInterface;
 
 class CategoryController extends Controller
 {
     /**
-     * Display a listing of the items.
-     *
-     * @return \Illuminate\Http\Response
+     * SubCategory Service Interface
      */
-    public function index()
+    private $categoryService;
+    public function __construct(CategoryServiceInterface $categoryServiceInterface)
     {
-        $categories = Category::all();
-        return CategoryResource::collection($categories);
+        $this->categoryService = $categoryServiceInterface;
     }
 
     /**
@@ -25,9 +22,20 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function index()
+    {
+        $categories = $this->categoryService->getAllCategory();
+        return CategoryResource::collection($categories);
+    }
+
+    /**
+     * Display detail of specified item
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function detail($id)
     {
-        $category = Category::findOrFail($id);
+        $category = $this->categoryService->findCategoryById($id);
         return new CategoryResource($category);
     }
 }

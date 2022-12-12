@@ -24,7 +24,7 @@ class ItemFactory extends Factory
             'sub_category_id' => SubCategory::all()->random()->id,
             'description' => $this->faker->sentence(),
             'price' => $this->faker->randomNumber(4),
-            'image_path' => $this->faker->imageUrl($width = 640, $height = 480) ,
+            'image_path' => $this->faker->imageUrl($width = 640, $height = 480),
         ];
     }
 }

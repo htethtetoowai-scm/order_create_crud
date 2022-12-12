@@ -59,7 +59,6 @@ class UserService implements UserServiceInterface
      * To update user data
      * @param  Illuminate\Http\Request  $request
      * @param int $id
-     * @return array $dashboardData
      */
     public function updateUser($request, $id)
     {

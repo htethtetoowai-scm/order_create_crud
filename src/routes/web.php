@@ -22,7 +22,7 @@ use App\Http\Controllers\Admin\AuthController;
 
 Route::redirect('/', 'admin/dashboard');
 Route::match(['GET', 'POST'], 'login', [AuthController::class, 'login'])->name('login')->middleware('guest:web');
-Route::prefix('admin')->middleware('auth:web')->group(function() {
+Route::prefix('admin')->middleware('auth:web')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);

@@ -20,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('App\Contracts\Dao\Admin\CategoryDaoInterface', 'App\Dao\Admin\CategoryDao');
         $this->app->bind('App\Contracts\Dao\Admin\SubCategoryDaoInterface', 'App\Dao\Admin\SubCategoryDao');
         $this->app->bind('App\Contracts\Dao\Admin\AdminDaoInterface', 'App\Dao\Admin\AdminDao');
+        $this->app->bind('App\Contracts\Dao\API\OrderDaoInterface', 'App\Dao\API\OrderDao');
 
         // Business logic registration
         $this->app->bind('App\Contracts\Services\Admin\ItemServiceInterface', 'App\Services\Admin\ItemService');
@@ -28,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('App\Contracts\Services\Admin\CategoryServiceInterface', 'App\Services\Admin\CategoryService');
         $this->app->bind('App\Contracts\Services\Admin\SubCategoryServiceInterface', 'App\Services\Admin\SubCategoryService');
         $this->app->bind('App\Contracts\Services\Admin\AdminServiceInterface', 'App\Services\Admin\AdminService');
+        $this->app->bind('App\Contracts\Services\API\OrderServiceInterface', 'App\Services\API\OrderService');
     }
 
     /**

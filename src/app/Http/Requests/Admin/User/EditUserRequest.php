@@ -24,12 +24,12 @@ class EditUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|unique:users,name,' . $this->id,
-            'email'=>'required|unique:users,email,' . $this->id,
+            'username' => 'required|unique:users,username,' . $this->id,
+            'email' => 'required|unique:users,email,' . $this->id,
         ];
     }
 
-        /**
+    /**
      * Get the error messages for the defined validation rules.
      *
      * @return array
@@ -37,8 +37,10 @@ class EditUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'User name is required',
+            'username.required' => 'User name is required',
+            'username.unique' => 'User name is already used',
             'email.required' => 'Email is required',
+            'email.unique' => 'Email is already used',
         ];
     }
 }

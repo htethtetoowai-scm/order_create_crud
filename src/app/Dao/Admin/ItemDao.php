@@ -50,18 +50,17 @@ class ItemDao implements ItemDaoInterface
      * To update item data
      * @param  Illuminate\Http\Request  $request
      * @param int $id
-     * @return array $dashboardData
      */
     public function updateItem($request, $id)
     {
         Item::where('id', $id)
-        ->update([
-            'category_id' => $request->input('category'),
-            'sub_category_id' => $request->input('subCategory'),
-            'name' => $request->input('name'),
-            'description' => $request->input('description'),
-            'price' => $request->input('price'),
-        ]);
+            ->update([
+                'category_id' => $request->input('category'),
+                'sub_category_id' => $request->input('subCategory'),
+                'name' => $request->input('name'),
+                'description' => $request->input('description'),
+                'price' => $request->input('price'),
+            ]);
     }
 
     /**
@@ -72,9 +71,9 @@ class ItemDao implements ItemDaoInterface
     public function updateItemImage($filePath, $id)
     {
         Item::where('id', $id)
-        ->update([
-            'image_path' => $filePath,
-        ]);
+            ->update([
+                'image_path' => $filePath,
+            ]);
     }
 
     /**
@@ -86,5 +85,4 @@ class ItemDao implements ItemDaoInterface
         $item = Item::findOrFail($id);
         $item->delete();
     }
-
 }

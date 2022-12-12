@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'username',
         'role_id',
         'email',
         'password',
@@ -47,7 +47,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the rold that owns the user.
+     * Get the role that owns the user.
      */
     public function role()
     {
@@ -63,13 +63,14 @@ class User extends Authenticatable
     }
 
     /**  
-    *Ondelete cascade for user
-    */
-    public static function boot() {
+     * Ondelete cascade for user
+     */
+    public static function boot()
+    {
         parent::boot();
 
-        static::deleting(function($user) {
-            foreach($user->orders as $order) {
+        static::deleting(function ($user) {
+            foreach ($user->orders as $order) {
                 $order->orderItems()->delete();
             }
             $user->orders()->delete();

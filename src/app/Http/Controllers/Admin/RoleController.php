@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Role;
 use App\Http\Requests\Admin\Role\EditRoleRequest;
 use App\Http\Requests\Admin\Role\StoreRoleRequest;
 use App\Contracts\Services\Admin\RoleServiceInterface;

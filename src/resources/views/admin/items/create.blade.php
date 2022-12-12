@@ -1,6 +1,6 @@
 @extends('admin.app')
 
-@section('title', 'Product Create')
+@section('title', 'Item Create')
 
 @section('content')
 

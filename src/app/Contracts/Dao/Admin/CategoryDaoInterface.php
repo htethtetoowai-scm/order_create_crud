@@ -32,7 +32,6 @@ interface CategoryDaoInterface
      * To update category data
      * @param  Illuminate\Http\Request  $request
      * @param int $id
-     * @return array $dashboardData
      */
     public function updateCategory($request, $id);
 
@@ -41,5 +40,4 @@ interface CategoryDaoInterface
      * @param int $id
      */
     public function deleteCategory($id);
-
 }

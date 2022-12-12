@@ -4,6 +4,7 @@ namespace App\Services\Admin;
 
 use App\Contracts\Dao\Admin\ItemDaoInterface;
 use App\Contracts\Services\Admin\ItemServiceInterface;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Service class for Item.
@@ -77,6 +78,28 @@ class ItemService implements ItemServiceInterface
     }
 
     /**
+     * To save image into local path
+     * @param Illuminate\Http\Request  $request
+     */
+    public function saveImageFile($file, $itemId)
+    {
+        $filePath = null;
+        if ($file) {
+            $folderPath = 'items';
+            // Check if file is not null
+            if ($file) {
+                // get file name
+                $file_extension = $file->getClientOriginalExtension();
+                $file_name = $itemId . '.' . $file_extension;
+
+                // save the file
+                $filePath = Storage::disk('public')->putFileAs($folderPath, $file, $file_name);
+            }
+            $this->updateItemImage($filePath, $itemId);
+        }
+    }
+
+    /**
      * To delete item data
      * @param int $id
      */
@@ -84,5 +107,4 @@ class ItemService implements ItemServiceInterface
     {
         $this->itemDao->deleteItem($id);
     }
-
 }

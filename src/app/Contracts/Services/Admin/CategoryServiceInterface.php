@@ -30,7 +30,6 @@ interface CategoryServiceInterface
      * To update category data
      * @param  Illuminate\Http\Request  $request
      * @param int $id
-     * @return array $dashboardData
      */
     public function updateCategory($request, $id);
 
@@ -39,5 +38,4 @@ interface CategoryServiceInterface
      * @param int $id
      */
     public function deleteCategory($id);
-
 }

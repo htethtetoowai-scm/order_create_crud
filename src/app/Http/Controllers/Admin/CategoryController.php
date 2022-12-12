@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Http\Requests\Admin\Category\StoreCategoryRequest;
 use App\Http\Requests\Admin\Category\EditCategoryRequest;
 use App\Contracts\Services\Admin\CategoryServiceInterface;
@@ -11,7 +10,7 @@ use App\Contracts\Services\Admin\CategoryServiceInterface;
 class CategoryController extends Controller
 {
     /**
-     * SubCategory Interface
+     * SubCategory Service Interface
      */
     private $categoryService;
     public function __construct(CategoryServiceInterface $categoryServiceInterface)
